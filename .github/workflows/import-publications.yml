@@ -35,6 +35,48 @@ jobs:
         # Note GH only provides hashFiles func in `steps.if` context, not `jobs.if` context
         if: ${{ hashFiles('publications.bib') != '' }}
         run: academic import publications.bib content/publication/ --compact
+      - name: Normalize Publication Types
+        run: |
+          python << EOF
+          import os
+          import re
+          import sys
+
+          pub_dir = 'content/publication'
+          # Mapping from academic tool slugs to Wowchemy numeric IDs
+          type_map = {
+              'paper-conference': '1',
+              'article-journal': '2',
+              'chapter': '6',
+              # You can add more mappings here if needed.
+              # Default Wowchemy types: 0:Uncategorized, 1:Conference, 2:Journal, 3:Preprint, 4:Report, 5:Book, 6:Book section
+          }
+
+          for root, dirs, files in os.walk(pub_dir):
+              for file in files:
+                  if file == 'index.md':
+                      filepath = os.path.join(root, file)
+                      try:
+                          with open(filepath, 'r', encoding='utf-8') as f:
+                              content = f.read()
+
+                          # Regex to find the publication_types block with a string slug
+                          pattern = re.compile(r"publication_types:\s*\n-\s*(\w+(?:-\w+)?)")
+                          
+                          def replace_pub_type(match):
+                              slug = match.group(1)
+                              numeric_id = type_map.get(slug, "0") # Default to "0" (Uncategorized) if not in map
+                              return f'publication_types: ["{numeric_id}"]'
+
+                          new_content, count = pattern.subn(replace_pub_type, content)
+
+                          if count > 0:
+                              with open(filepath, 'w', encoding='utf-8') as f:
+                                  f.write(new_content)
+                              print(f"Normalized publication type in {filepath}")
+                      except Exception as e:
+                          print(f"Error processing {filepath}: {e}", file=sys.stderr)
+          EOF
       - name: Create Pull Request
         # Set ID for `Check outputs` stage
         id: cpr
