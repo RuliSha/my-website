@@ -8,8 +8,7 @@ authors:
 - Thodoris Tsilivis
 date: '2025-01-01'
 publishDate: '2025-10-28T16:49:29.418723Z'
-publication_types:
-- chapter
+publication_types: ["1"]
 publication: '*Proceedings of the 26th ACM Conference on Economics and Computation*'
 links:
 - name: URL
