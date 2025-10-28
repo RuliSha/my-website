@@ -21,26 +21,26 @@ organizations:
   - name: Weizmann Institute of Science
 
 # Short bio (displayed in user profile at end of posts)
-bio: My research interests include algorithmic game theory, and algorithms. 
+bio: My research interests include algorithmic game theory, and approximation algorithms. 
 
-# Interests to show in About widget
-interests:
-  - Algorithmic Game Theory
-  - Mechanism Design
-  - Algorithms
+# # Interests to show in About widget
+# interests:
+#   - Algorithmic Game Theory
+#   - Mechanism Design
+#   - Algorithms
 
-# Education to show in About widget
-education:
-  courses:
-    - course: Pursuing PhD in Machine Learning
-      institution: Weizmann Institute of Science
-      year: 2025
-    - course: MSc in Machine Learning
-      institution: Weizmann Institute of Science
-      year: 2021
-    - course: BSc in Mathematics and Computer Science
-      institution: Ben Gurion University of the Negev
-      year: 2018
+# # Education to show in About widget
+# education:
+#   courses:
+#     - course: Pursuing PhD in Machine Learning
+#       institution: Weizmann Institute of Science
+#       year: 2025
+#     - course: MSc in Machine Learning
+#       institution: Weizmann Institute of Science
+#       year: 2021
+#     - course: BSc in Mathematics and Computer Science
+#       institution: Ben Gurion University of the Negev
+#       year: 2018
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
@@ -74,4 +74,4 @@ highlight_name: true
 ---
 
 I'm a PhD student in the Department of Computer Science and Applied Mathematics at the Weizmann Institute of Science, where I'm advised by Prof. [Shahar Dobzinski](https://sites.google.com/site/dobzin/).
-My primary research interests are algorithmic game theory, mechanism design,  and approximation algorithms.
+My research focuses on algorithmic game theory, mechanism design, and approximation algorithms.
