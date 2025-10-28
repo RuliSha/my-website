@@ -1,0 +1,19 @@
+# Add your co-authors here to make their names linkable in publication lists.
+# The key must be the EXACT name as it appears in your publication's front matter.
+
+"Shahar Dobzinski":
+  url: "https://sites.google.com/site/dobzin/"
+"Tomer Ezra":
+  url: "https://www.cs.tau.ac.il/~tomeraz/"
+"Daniel Schoepflin":
+  url: "https://danielschoepflin.com/"
+"Alon Eden":
+  url: "https://www.cs.huji.ac.il/~aloneden/"
+"Kira Goldner":
+  url: "https://www.kiragoldner.com/"
+"Thodoris Tsilivis":
+  url: "https://sites.google.com/view/theotsilivis/home"
+
+# Example of an author without a URL (will not be linked):
+# "Another Coauthor":
+#   url: ""

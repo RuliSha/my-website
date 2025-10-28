@@ -24,10 +24,20 @@
             {{- $coauthors = $coauthors | append . -}}
           {{- end -}}
         {{- end -}}
+
         {{- if gt (len $coauthors) 0 -}}
         <div>
           <span itemprop="author">
-            With {{ delimit $coauthors ", " | markdownify }}
+            With
+            {{- range $index, $author := $coauthors -}}
+              {{- if gt $index 0 }}, {{ end -}}
+              {{- $author_data := index site.Data.authors $author -}}
+              {{- if and $author_data $author_data.url -}}
+                <a href="{{ $author_data.url }}" target="_blank" rel="noopener">{{ $author }}</a>
+              {{- else -}}
+                {{ $author }}
+              {{- end -}}
+            {{- end -}}
           </span>
         </div>
         {{- end -}}
