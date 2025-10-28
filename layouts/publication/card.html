@@ -1,68 +1,60 @@
-{{- $item := . -}}
-{{- $resource := ($item.Resources.ByType "image").GetMatch "*featured*" -}}
-{{- $link := $item.Params.external_link | default $item.RelPermalink -}}
+{{ $item := . }}
+{{ $link := $item.RelPermalink }}
+{{ if $item.Params.external_link }}
+  {{ $link = $item.Params.external_link }}
+{{ end }}
 
 <div class="col-lg-12">
-  <div class="card-simple" itemscope itemprop="CreativeWork" style="padding-bottom: 30px;">
+  <div class="card-simple" style="padding-bottom: 30px;">
+
     <div class="article-metadata">
-      <!-- Publication Date -->
       <span style="float: right;">{{ partial "functions/get_publication_date" $item }}</span>
     </div>
 
-    <!-- Title -->
-    <h3 class="article-title mb-1 mt-0" itemprop="name">
-      <a href="{{ $link }}" itemprop="url">{{ $item.Title }}</a>
+    <h3 class="article-title mb-1 mt-0">
+      <a href="{{ $link }}">{{ $item.Title }}</a>
     </h3>
 
-    <!-- Authors -->
     <div class="article-metadata">
-      {{ with $item.Params.authors }}
-        {{- $my_name := "Ariel Shaulker" -}}
-        {{- $coauthors := slice -}}
-        {{- range . -}}
-          {{- if ne . $my_name -}}
-            {{- $coauthors = $coauthors | append . -}}
-          {{- end -}}
-        {{- end -}}
+      {{ if $item.Params.authors }}
+        {{ $my_name := "Ariel Shaulker" }}
+        {{ $coauthors := slice }}
+        {{ range $item.Params.authors }}
+          {{ if ne . $my_name }}
+            {{ $coauthors = $coauthors | append . }}
+          {{ end }}
+        {{ end }}
 
-        {{- if gt (len $coauthors) 0 -}}
-        <div>
-          <span itemprop="author">
-            With
-            {{- range $index, $author := $coauthors -}}
-              {{- if gt $index 0 }}, {{ end -}}
-              {{- $author_data := index site.Data.authors $author -}}
-              {{- if and $author_data $author_data.url -}}
-                <a href="{{ $author_data.url }}" target="_blank" rel="noopener">{{ $author }}</a>
-              {{- else -}}
-                {{ $author }}
-              {{- end -}}
-            {{- end -}}
-          </span>
-        </div>
-        {{- end -}}
+        {{ if gt (len $coauthors) 0 }}
+          <div>
+            <span>
+              With
+              {{ range $index, $author := $coauthors }}
+                {{ if gt $index 0 }}, {{ end }}
+                {{ $author_data := index site.Data.authors $author }}
+                {{ if and $author_data $author_data.url }}
+                  <a href="{{ $author_data.url }}" target="_blank" rel="noopener">{{ $author }}</a>
+                {{ else }}
+                  {{ $author }}
+                {{ end }}
+              {{ end }}
+            </span>
+          </div>
+        {{ end }}
       {{ end }}
     </div>
 
-    <!-- Publication Venue -->
     {{ with $item.Params.publication }}
-    <div class="article-metadata">
-      <div class="pub-venue" itemprop="publisher">
-        {{- . | markdownify -}}
+      <div class="article-metadata">
+        <div class="pub-venue">
+          {{ . | markdownify }}
+        </div>
       </div>
-    </div>
     {{ end }}
 
-    <!-- Abstract -->
-    {{ if $item.Params.abstract }}
-    <div class="article-style">
-      <p itemprop="description">{{ $item.Params.abstract | markdownify | truncate 280 }}</p>
-    </div>
-    {{ end }}
-
-    <!-- Links -->
     <div class="btn-links">
       {{ partial "page_links" (dict "page" $item "is_list" 1) }}
     </div>
+
   </div>
 </div>
