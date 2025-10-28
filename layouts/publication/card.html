@@ -17,11 +17,20 @@
     <!-- Authors -->
     <div class="article-metadata">
       {{ with $item.Params.authors }}
-      <div>
-        <span itemprop="author">
-          {{- delimit . ", " | markdownify -}}
-        </span>
-      </div>
+        {{- $my_name := "Ariel Shaulker" -}}
+        {{- $coauthors := slice -}}
+        {{- range . -}}
+          {{- if ne . $my_name -}}
+            {{- $coauthors = $coauthors | append . -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if gt (len $coauthors) 0 -}}
+        <div>
+          <span itemprop="author">
+            With {{ delimit $coauthors ", " | markdownify }}
+          </span>
+        </div>
+        {{- end -}}
       {{ end }}
     </div>
 
