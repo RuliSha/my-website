@@ -73,7 +73,5 @@ email: 'ariel.shaulker@gmail.com'
 highlight_name: true
 ---
 
-Odelia Melamed is a PhD student advised by Professor Adi Shamir at the department of Applied Mathematics and Computer Science, Weizmann Institute of Science, Israel. Her research interests include Adversarial Examples in Machine Learning, and Thoeretical Machine Learning. 
-
-Particularly, she is interested in Adversarial Examples and the Neural Networks’ properties that lead to their existence in the theoretic aspect, the geometric and algebraic properties of trained Neural Networks due to their architecture, the data set, and the training process. Interested in the transferability of adversarial examples and the nature of defense methods against these examples. Focus on implicit low-dimensional data sets in high-dimensional input space, combine theory and applied research.
-{style="text-align: justify;"}
+I'm a PhD student in the Department of Computer Science and Applied Mathematics at the Weizmann Institute of Science, where I'm advised by Prof. [Shahar Dobzinski](https://sites.google.com/site/dobzin/).
+My primary research interests are algorithmic game theory, mechanism design,  and approximation algorithms.
