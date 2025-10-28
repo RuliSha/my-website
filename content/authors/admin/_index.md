@@ -74,4 +74,4 @@ highlight_name: true
 ---
 
 I'm a PhD student in the Department of Computer Science and Applied Mathematics at the Weizmann Institute of Science, where I'm advised by Prof. [Shahar Dobzinski](https://sites.google.com/site/dobzin/).
-My research focuses on algorithmic game theory, mechanism design, and approximation algorithms.?
+My research focuses on algorithmic game theory, mechanism design, and approximation algorithms.
