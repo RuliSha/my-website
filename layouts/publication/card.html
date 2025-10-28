@@ -1,0 +1,49 @@
+{{- $item := . -}}
+{{- $resource := ($item.Resources.ByType "image").GetMatch "*featured*" -}}
+{{- $link := $item.Params.external_link | default $item.RelPermalink -}}
+
+<div class="col-lg-12">
+  <div class="card-simple" itemscope itemprop="CreativeWork" style="padding-bottom: 30px;">
+    <div class="article-metadata">
+      <!-- Publication Date -->
+      <span style="float: right;">{{ partial "functions/get_publication_date" $item }}</span>
+    </div>
+
+    <!-- Title -->
+    <h3 class="article-title mb-1 mt-0" itemprop="name">
+      <a href="{{ $link }}" itemprop="url">{{ $item.Title }}</a>
+    </h3>
+
+    <!-- Authors -->
+    <div class="article-metadata">
+      {{ with $item.Params.authors }}
+      <div>
+        <span itemprop="author">
+          {{- delimit . ", " | markdownify -}}
+        </span>
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- Publication Venue -->
+    {{ with $item.Params.publication }}
+    <div class="article-metadata">
+      <div class="pub-venue" itemprop="publisher">
+        {{- . | markdownify -}}
+      </div>
+    </div>
+    {{ end }}
+
+    <!-- Abstract -->
+    {{ if $item.Params.abstract }}
+    <div class="article-style">
+      <p itemprop="description">{{ $item.Params.abstract | markdownify | truncate 280 }}</p>
+    </div>
+    {{ end }}
+
+    <!-- Links -->
+    <div class="btn-links">
+      {{ partial "page_links" (dict "page" $item "is_list" 1) }}
+    </div>
+  </div>
+</div>
